@@ -21,7 +21,7 @@ AUTH_USER_MODEL = "app.User"
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ["secret"]
+SECRET_KEY = 'django-insecure-k3wmm2k2n3fa*$^p9$5c1!$6vfjwx98qzjfqwk5i)qkbc1=h)@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -117,9 +117,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
