@@ -82,7 +82,7 @@ DATABASES = {
         'NAME': 'd2c5cpa7dirrd1', 
         'USER': 'boxalzdgxheytt', 
         'PASSWORD': '85aec61d22e937001dc35913d53e608da05a39f0a63ae5e70a424ada4cb935b9',
-        'HOST': "postgres://boxalzdgxheytt:85aec61d22e937001dc35913d53e608da05a39f0a63ae5e70a424ada4cb935b9@ec2-34-247-72-29.eu-west-1.compute.amazonaws.com:5432/d2c5cpa7dirrd1", 
+        'HOST': "ec2-34-247-72-29.eu-west-1.compute.amazonaws.com", 
         'PORT': '5432',
     }
 }
