@@ -6,7 +6,7 @@ from .encrypt import decrypt
 
 
 class User(AbstractUser):
-    seperation = models.CharField(unique=True,null=False, default=uuid.uuid1, editable=False)
+    seperation = models.CharField(unique=True,null=False, default=uuid.uuid1, editable=False, max_length=100)
     pass
 
 class Message(models.Model):
