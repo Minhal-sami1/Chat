@@ -1,0 +1,110 @@
+{% extends 'layout.html' %}
+{% load decrypttag %}
+{% block title %}Message{% endblock title %}
+
+{% block body %}
+<div style="padding-left: 1%; padding-right: 2%; padding-top: 1%;">
+<div id="showms">
+
+</div>
+<div class="mb-3">
+  <label for="message" class="form-label mx-auto">Type you message here!</label>
+  <textarea class="form-control" id="message" rows="3"></textarea>
+</div>
+<button id="sub_message" class="btn btn-dark" type="submit">message</button>
+</div>
+<div style="display:none;" id="userid">{{userid}}</div>
+<div style="display:none;" id="curr">{{curr.seperation}}</div>
+
+<script>
+    let csrftoken = getCookie('csrftoken');
+    document.addEventListener("DOMContentLoaded", ()=> {
+    const userid = document.querySelector("#userid").innerHTML;
+    const curr = document.querySelector("#curr").innerHTML;
+    setInterval(function(){
+        const element = document.querySelector("#showms");
+        fetch(`/newmessages/${curr}/${userid}`)
+        .then(response => response.json())
+        .then(data => {
+                element.innerHTML="";
+                Object.keys(data).forEach(element => {
+                        add_message(data[element], curr);
+                    });
+                }
+                
+            )
+    }, 1000);
+    document.addEventListener("click", (event)=>{
+        const target = event.target;
+        if (target.id == "sub_message"){
+            const message = document.querySelector("#message").value;
+            document.querySelector("#message").value = "";
+            const userid = document.querySelector("#userid").innerHTML;
+            const curr = document.querySelector("#curr").innerHTML;
+            if(message !== ""){
+                
+            fetch(`/message/${userid}`,{
+                method:"POST",
+                body: JSON.stringify(message),
+                headers: { 'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json',
+                "X-CSRFToken": csrftoken }, 
+            }).then(response => response.json())
+            .then(result => {
+                const status = result["message"];
+                if (status === "Success"){
+                    console.log("success");
+                }
+            })
+        }
+            }
+
+    });
+})
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+function add_message(content, curr) {
+    const element = document.querySelector("#showms");
+
+    const bigc = document.createElement("div");
+    bigc.className="card text-white bg-primary mb-3 mx-auto";
+    bigc.style = "max-width:80%;";
+                        
+    const innerc = document.createElement("div");
+    innerc.className="card-body";
+    
+    const head6 = document.createElement("h6");
+    head6.className = "card-subtitle mb-2 text-center";
+    head6.innerHTML = "Your Message";
+    
+    const para = document.createElement("p");
+    para.className = "card-text";
+    para.innerHTML = content[0];
+    const linebr = document.createElement("br");
+    innerc.append(head6);
+    innerc.append(para);
+    bigc.append(innerc);
+    element.append(linebr);
+    head6.innerHTML = "Your Message";
+    if(content[1] !== curr){
+        bigc.className="card text-white bg-secondary mb-3 mx-auto";
+        head6.innerHTML = "Friend's Message";
+    }
+    element.append(bigc);
+}
+
+</script>
+{% endblock body %}

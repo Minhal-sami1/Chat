@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% block title %}Get ID{% endblock title %}
+
+{% block body %}
+<div style="padding-left: 1%; padding-right: 1%; padding-top: 1%;">
+<div id="message"></div>
+    <div class="card text-white bg-danger mb-4 text-center h-24 mx-auto" style="max-width: 70%;">
+        <div class="card-body">
+            <p class="card-title" style="font-size: xx-large;"><strong> Here is your Unique ID. </strong></p>
+            <br>
+            <p class="card-text" style="font-size: large;"><strong id="unique_id">{{unique_id}}</strong></p>
+            <br>
+            <button  class="btn btn-large btn-dark"><a class="btn btn-dark" onclick="copyText()"> Copy to clipboard!</a></button>
+        </div>
+        <a href="{% url 'index' %}" class="btn btn-large btn-dark mx-auto"> Return to homepage! </a>
+        <br>
+    </div>
+</div>
+<script>
+    function copyText() {
+        /* Copy text into clipboard */
+        const id = document.querySelector("#unique_id").innerHTML;
+        navigator.clipboard.writeText(id);
+        document.querySelector("#message").innerHTML = `<div class="alert alert-info text-center alert-dismissible fade show" role="alert">
+  <strong>Id Copied to your clipboard!</strong> 
+  </button>
+</div>`;
+    }
+</script>
+{% endblock body %}

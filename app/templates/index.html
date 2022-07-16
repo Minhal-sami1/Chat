@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}With your Buddy{% endblock title %}
+{% block body %}
+<div style="padding-left: 1%; padding-right: 1%; padding-top: 1%;">
+     
+    <div class="card text-white bg-primary mb-4 text-center h-24 mx-auto" style="max-width: 70%;">
+        <div class="card-body">
+            <p class="card-title" style="font-size: xx-large;"><strong> Chat with your friend by using Unique ID </strong></p>
+            <br>
+            <p class="card-text" style="font-size: large;">Click to <strong> input ID </strong> and get connect with him.</p>
+            <br>
+            <a href="{% url 'connect' %}" class="btn btn-large btn-dark"> Connect! </a>
+        </div>
+    </div>
+
+    <div class="card text-white bg-secondary mb-3 text-center h-24 mx-auto" style="max-width: 70%;">
+        <div class="card-body">
+            <p class="card-title" style="font-size: xx-large;"><strong> Get your Unique to chat with your friends </strong></p>
+            <br>
+            <p class="card-text" style="font-size: large;">Click to <strong> Get your ID </strong> and get connect with him.</p>
+            <br>
+            <a href="{% url 'getid' %}" class="btn btn btn-large btn-dark"> Get your <strong>ID !</strong> </a>
+        </div>
+    </div>
+</div>
+{% endblock body %}
