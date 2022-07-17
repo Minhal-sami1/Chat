@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block title %}Input ID{% endblock title %}
+
+{% block body %}
+<div style="padding-left: 1%; padding-right: 1%; padding-top: 1%;">
+<div id="message"></div>
+    <div class="card text-white bg-primary mb-4 text-center h-24 mx-auto" style="max-width: 70%;">
+        <div class="card-body">
+            <p class="card-title" style="font-size: xx-large;"><strong> Input your friend's Unique ID. </strong></p>
+            <br>
+            <form action="{% url 'connect' %}" method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label"><strong> ID</strong></label>
+                    <input class="form-control" id="exampleInputEmail1"name="connectid" aria-describedby="emailHelp">
+                    <br>
+                    <button  class="btn btn-large btn-dark" type="submit"> Connect!</button>
+                </div>
+            </form>
+        </div>
+        <a href="{% url 'index' %}" class="btn btn-large btn-dark mx-auto"> Return to homepage! </a>
+        <br>
+    </div>
+</div>
+{% endblock body %}
