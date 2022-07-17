@@ -3,9 +3,8 @@ import base64
 import logging
 import traceback
 import os
-from boto.s3.connection import S3Connection
 
-get_key = S3Connection(os.environ['encryption_key_decryption'])
+get_key = os.environ['encryption_key_decryption']
 key = get_key
 
 def encrypt(txt):

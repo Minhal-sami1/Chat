@@ -13,9 +13,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 import django_heroku
-from boto.s3.connection import S3Connection
 
-get_key = S3Connection(os.environ['secret_django_secret'])
+get_key = os.environ['secret_django_secret']
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
