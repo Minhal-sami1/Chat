@@ -17,7 +17,7 @@ import django_heroku
 get_key = os.environ['secret_django_secret']
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+CSRF_TRUSTED_ORIGINS = ['https://*.127.0.0.1','https://chat.minhal.xyz','https://postgresdbchat.herokuapp.com/']
 AUTH_USER_MODEL = "app.User" 
 
 # Quick-start development settings - unsuitable for production
