@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 import django_heroku
+from boto.s3.connection import S3Connection
+
+get_key = S3Connection(os.environ['secret_django_secret'])
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -22,7 +25,7 @@ AUTH_USER_MODEL = "app.User"
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-k3wmm2k2n3fa*$^p9$5c1!$6vfjwx98qzjfqwk5i)qkbc1=h)@'
+SECRET_KEY = get_key
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
