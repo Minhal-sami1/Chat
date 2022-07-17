@@ -93,10 +93,12 @@ def get_messages(request, userf, usert):
         connect_id = User.objects.get(seperation=usert)
         current_user = User.objects.get(username=request.user)
         f1 = Q(user_from = current_user)
-        f3 = Q(user_from = connect_id)
+        f3 = Q(user_to = connect_id)
+        f2 = Q(user_to = current_user)
+        f4 = Q(user_from = connect_id)
         #messages_old = Message.objects.filter( f1 | f3).order_by("time") 
         try:
-            messages_new = Message.objects.filter(f1 | f3).order_by("time")
+            messages_new = Message.objects.filter(f1 & f3 | f2 & f4).order_by("time")
         except Message.DoesNotExist:
             messages_new = []
         obj_json = {}
