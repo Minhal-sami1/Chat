@@ -13,6 +13,14 @@ Hi ! I am Minhal Abdul Sami, I made this "Chat with your buddy" Webapp. You migh
 ## Getting Started
 
 1. First install all the dependencies to run it.
-... ```python
+```python
 Python install -r requirements.txt
+```
+2. Make migrations to setup Django Models for your DB
+```python
+Python manage.py makemigrations
+```
+3. Apply the migrations to setup your DB
+```python
+Python manage.py migrate
 ```
