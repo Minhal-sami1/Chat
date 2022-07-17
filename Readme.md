@@ -35,3 +35,7 @@ Python manage.py createsuperuser
 Python manage.py runserver
 ```
 
+## How its different from others ?
+* First of all you need your friend's unique ID in order to connect with him, there is no other option. If you don't share your ID with someone unknown, the unknown will not be able to message you
+* Second If someone tries to login as you, they will not be able to see your previous chat
+* Third If someone tries to read your current open chat then he will not be able to know who is the **Friend** you are talking to.
