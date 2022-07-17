@@ -35,7 +35,15 @@ Python manage.py createsuperuser
 Python manage.py runserver
 ```
 
-## How its different from others ?
+## How its different from others ? || Distinctiveness and Complexity:
 * First of all you need your friend's unique ID in order to connect with him, there is no other option. If you don't share your ID with someone unknown, the unknown will not be able to message you
 * Second If someone tries to login as you, they will not be able to see your previous chat
 * Third If someone tries to read your current open chat then he will not be able to know who is the **Friend** you are talking to.
+* All of the messages are encrypted and even the owner of the webapp will not be able to know what is written in the messages
+
+## Why I made this?
+
+I made this because there is a huge lack of trust on messaging and chatting platforms. The users are not sure of their privacy. So I made this to be sure that all my chats are encrypted and secure and no one can access them or sell them in any way.
+
+# Where is it available ?
+[Hosted online !](https://chat.minhal.xyz)
