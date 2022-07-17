@@ -26,3 +26,4 @@ Python manage.py makemigrations
 ```python
 Python manage.py migrate
 ```
+
