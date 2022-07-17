@@ -12,6 +12,8 @@ Hi ! I am Minhal Abdul Sami, I made this "Chat with your buddy" Webapp. You migh
 
 ## Getting Started
 
+**Be sure run all these commands in the project folder/directory**
+
 1. First install all the dependencies to run it.
 ```python
 Python install -r requirements.txt

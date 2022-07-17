@@ -78,14 +78,18 @@ WSGI_APPLICATION = 'Chat.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
+name_db = os.environ["NAME"]
+USER_db = os.environ["USER"]
+password_db = os.environ["PASS_DB"]
+host_db = os.environ["HOST_DB"]
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd2c5cpa7dirrd1', 
-        'USER': 'boxalzdgxheytt', 
-        'PASSWORD': '85aec61d22e937001dc35913d53e608da05a39f0a63ae5e70a424ada4cb935b9',
-        'HOST': "ec2-34-247-72-29.eu-west-1.compute.amazonaws.com", 
+        'NAME': name_db, 
+        'USER': USER_db, 
+        'PASSWORD': password_db,
+        'HOST': host_db, 
         'PORT': '5432',
     }
 }
