@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+{% block title %}Contacted{% endblock title %}
+
+{% block body %}
+<div style="padding-left: 1%; padding-right: 1%; padding-top: 1%;">
+    <h1> You contacted: </h1>
+<ul>
+    {% for contact in contacted %}
+        <li style="font-size: x-large;"><a href="{% url 'message' contact.TO.seperation %}">{{contact.TO.username}}</a></li>
+        {% empty %}
+        <li style="font-size: x-large;">No one 😥</li>
+    {% endfor %}
+</ul>
+<br>
+    <h1> You have been contacted by: </h1>
+<ul>
+    {% for contact in otherone %}
+        <li style="font-size: x-large;"><a href="{% url 'message' contact.TO.seperation %}">{{contact.TO.username}}</a></li>
+        {% empty %}
+        <li style="font-size: x-large;">No one 😥</li>
+    {% endfor %}
+</ul>
+
+</div>
+{% endblock body %}

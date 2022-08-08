@@ -4,7 +4,7 @@ import logging
 import traceback
 import os
 
-get_key = os.environ['encryption_key_decryption']
+get_key = b"c2Ivjg2yHp5MaVXpKnRHgdCvUhiFF2TC_LodlIBzoRg="
 key = get_key
 
 def encrypt(txt):

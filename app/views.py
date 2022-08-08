@@ -82,6 +82,9 @@ def connect(request):
             if request.user == user_data:
                 return HttpResponseRedirect(reverse("connect"))
             else:
+                curr = User.objects.get(username=request.user)
+                con=Contacted_people(FROM=curr, TO=user_data)
+                con.save()
                 return redirect(reverse("message", args=(f"{connect_id}",)))
         except User.DoesNotExist:
             return HttpResponseRedirect(reverse("connect"))
@@ -146,3 +149,11 @@ def messages(request, user_id):
         print("not found")
         return HttpResponseRedirect(reverse("connect"))
 
+def Already_contacted(request):
+    try:
+        requested_USER = User.objects.get(username = request.user)
+        people_contacted = Contacted_people.objects.filter(FROM = requested_USER)
+        otherone = Contacted_people.objects.filter(TO = requested_USER)
+        return render(request, "Contacted.html", {"contacted": people_contacted, "otherone": otherone})
+    except User.DoesNotExist:
+        return HttpResponseRedirect(reverse("index"))

@@ -16,3 +16,9 @@ class Message(models.Model):
     time = models.TimeField(auto_now=True)
     def __str__(self):
         return f"Message: {decrypt(self.text)}, from: {self.user_from}, to: {self.user_to}"
+
+class Contacted_people(models.Model):
+    FROM = models.ForeignKey(User, on_delete=models.CASCADE, related_name = "FROM")
+    TO = models.ForeignKey(User, on_delete=models.CASCADE, related_name = "TO")
+    def __str__(self):
+        return f"FROM: {self.FROM}, TO: {self.TO}"

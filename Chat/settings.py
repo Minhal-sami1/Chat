@@ -29,7 +29,7 @@ SECRET_KEY = get_key
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://*.127.0.0.1','https://chat.minhal.xyz','https://postgresdbchat.herokuapp.com/',"http://127.0.0.1"]
 
 
 # Application definition
