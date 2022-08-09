@@ -15,7 +15,7 @@
     <h1> You have been contacted by: </h1>
 <ul>
     {% for contact in otherone %}
-        <li style="font-size: x-large;"><a href="{% url 'message' contact.TO.seperation %}">{{contact.TO.username}}</a></li>
+        <li style="font-size: x-large;"><a href="{% url 'message' contact.FROM.seperation %}">{{contact.FROM.username}}</a></li>
         {% empty %}
         <li style="font-size: x-large;">No one 😥</li>
     {% endfor %}
