@@ -1,29 +1,25 @@
-# Chat with your buddy 
-Hi ! I am Minhal Abdul Sami, I made this "Chat with your buddy" Webapp. You might have seen many chatting webapps and apps but there is always a questions about its standard of security and privacy, they give new and free features in trade of your security and privacy. But this webapp is unique on its own. The features will be discussed later. lets move which tech is used to build this.
 
-## Tech stack
+<div  align='center'>
 
-* Django
-* Vanilla Javascript
-* HTML/CSS
-* Bootsrap
+# Chat with your buddy  🙂
+Unlike other chatting apps, this webapp provides **Security** and gives every user **Privacy**
+</div>
 
-**Yes its that simple.**
+## Tech Stack
+ - Django
+ - Vanilla JavaScript
+ - HTML/CSS
+ - Bootstrap
 
-## Getting Started
-
-**Be sure run all these commands in the project folder/directory**
-
-1. First install all the dependencies to run it.
-```python
-Python install -r requirements.txt
+## Usage
+Run the following commands to use this chatting app
+```bash
+git clone https://github.com/Minhal-sami1/Chat
+cd Chat
+pip install -r requirements.txt
+python manage.py makemigrations
+python manage.py migrate
+python manage.py runserver
 ```
-2. Make migrations to setup Django Models for your DB
-```python
-Python manage.py makemigrations
-```
-3. Apply the migrations to setup your DB
-```python
-Python manage.py migrate
-```
-
+###### Before you run these commands, make sure to configure the database and secret_key correctly in settings.py 
+In Addition, the webapp is already hosted at [chat.minhal.xyz](https://chat.minhal.xyz)

@@ -1,16 +1,16 @@
 from django.urls import path
-from django.conf import settings
-from django.conf.urls.static import static
+from django.contrib.auth.decorators import login_required
 from . import views
 
+
 urlpatterns = [
-    path('register/', views.register, name="register"),
-    path("login/", views.login_view, name="login"),
-    path("logout/", views.logout_view, name="logout"),
-    path('', views.index, name="index"),
-    path('getid/', views.get_unique_id, name="getid"),
-    path('connect/', views.connect, name="connect"),
-    path("message/<str:user_id>", views.messages, name="message"),
-    path("newmessages/<str:userf>/<str:usert>", views.get_messages, name="message"),
-    path("contacted/", views.Already_contacted, name="contacted")
+    path('register/', views.RegisterView.as_view(), name="register"),
+    path("login/", views.LoginView.as_view(), name="login"),
+    path("logout/", login_required(views.logout_view), name="logout"),
+    path('', login_required(views.index), name="index"),
+    path('getid/', login_required(views.get_unique_id), name="getid"),
+    path('connect/', login_required(views.connect), name="connect"),
+    path("message/<str:user_id>", login_required(views.messages), name="message"),
+    path("newmessages/<str:userf>/<str:usert>", login_required(views.get_messages), name="message"),
+    path("contacted/", login_required(views.Already_contacted), name="contacted")
 ]

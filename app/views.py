@@ -8,72 +8,64 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from .encrypt import decrypt, encrypt
 from django.db.models import Q
-# Create your views here.
+from django.views import View
 
-def register(request):
-    if request.method == "POST":
-        username = request.POST["username"]
-        email = request.POST["email"]
+class RegisterView(View):
+    def get(self, req):
+        return render(req, 'account/register.html')
 
+    def post(self, req):
+        username = req.POST["username"]
+        email = req.POST["email"]
         # Ensure password matches confirmation
-        password = request.POST["password"]
-        confirmation = request.POST["confirmation"]
+        password = req.POST["password"]
+        confirmation = req.POST["confirmation"]
         if password != confirmation:
-            return render(request, "register.html", {
+            return render(req, "account/register.html", {
                 "message": "Passwords must match."
             })
-
         # Attempt to create new user
         try:
             user = User.objects.create_user(username, email, password)
             user.save()
+            login(req, user)
+            return HttpResponseRedirect(reverse("index"))
         except IntegrityError:
-            return render(request, "register.html", {
-                "message": "Username already taken."
-            })
-        login(request, user)
-        return HttpResponseRedirect(reverse("index"))
-    else:
-        return render(request, "register.html")
+            return render(req, "account/register.html", {"message": "Username already taken."})
 
-@login_required(login_url="login")
+
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("index"))
 
-def login_view(request):
-    if request.method == "POST":
 
-        # Attempt to sign user in
-        username = request.POST["username"]
-        password = request.POST["password"]
-        user = authenticate(request, username=username, password=password)
+class LoginView(View):
+    def get(self, req):
+        return render(req, "account/login.html")
 
-        # Check if authentication successful
+    def post(self, req):
+        username = req.POST["username"]
+        password = req.POST["password"]
+        user = authenticate(req, username=username, password=password)
         if user is not None:
-            login(request, user)
+            login(req, user)
             return HttpResponseRedirect(reverse("index"))
         else:
-            return render(request, "login.html", {
-                "message": "Invalid username and/or password."
-            })
-    else:
-        return render(request, "login.html")
+            return render(req, "account/login.html", {"message": "Invalid username and/or password."})
 
-@login_required(login_url="login")
 def index(request):
-    return render(request,"index.html")
+    return render(request,"app/index.html")
 
 
-@login_required(login_url="login")
 def get_unique_id(request):
     unique_id = User.objects.get(username=request.user)
-    return render(request,"getid.html",{
+    return render(request,"app/getid.html",{
         "unique_id":unique_id.seperation
     })
+
+
 global curr 
 curr = 0
-@login_required(login_url="login")
 def connect(request):
     if request.method == "POST":
         connect_id = request.POST['connectid']
@@ -89,7 +81,7 @@ def connect(request):
         except User.DoesNotExist:
             return HttpResponseRedirect(reverse("connect"))
     else:    
-        return render(request,"inputid.html")
+        return render(request,"app/inputid.html")
 
 def get_messages(request, userf, usert):
     try:
@@ -120,7 +112,6 @@ def get_messages(request, userf, usert):
         print("not found")
         return HttpResponseRedirect(reverse("connect"))
 
-@login_required(login_url="login")
 def messages(request, user_id):
     if request.method == "POST":
         connect_id = User.objects.get(seperation=user_id)
@@ -139,7 +130,7 @@ def messages(request, user_id):
         #for ms in messages_old:
             #curr = ms.id
         #print(curr)
-        return render(request, "messages.html",{
+        return render(request, "app/messages.html",{
         "userid":user_id,
         "uston": connect_id,
         "curr":current_user,
@@ -154,6 +145,6 @@ def Already_contacted(request):
         requested_USER = User.objects.get(username = request.user)
         people_contacted = Contacted_people.objects.filter(FROM = requested_USER)
         otherone = Contacted_people.objects.filter(TO = requested_USER)
-        return render(request, "Contacted.html", {"contacted": people_contacted, "otherone": otherone})
+        return render(request, "app/Contacted.html", {"contacted": people_contacted, "otherone": otherone})
     except User.DoesNotExist:
         return HttpResponseRedirect(reverse("index"))
